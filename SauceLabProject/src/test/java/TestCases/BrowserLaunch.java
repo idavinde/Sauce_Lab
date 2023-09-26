@@ -23,20 +23,12 @@ public class BrowserLaunch {
 
 WebDriver driver;
 
-protected LoginPage loginPage  ;
-ProductDetailPage productDetailPage = new ProductDetailPage(driver);
-CartPage cartPage =new CartPage(driver);
-InfoPage infoPage =new InfoPage(driver);
-OverviewPage overviewPage =new OverviewPage(driver);
-CompletePage completePage=new CompletePage(driver);
-ReadConfig readConfig;
 
 	
 	@BeforeClass
-	@Test
+	
 	public void setUp() throws IOException {
 		driver = new ChromeDriver();
-		setdriver();
 		driver.get("https://www.saucedemo.com");
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
@@ -44,13 +36,7 @@ ReadConfig readConfig;
 	}
 	
 	
-	@Test(dependsOnMethods= {"setUp"})
-	public void setdriver() throws IOException {
-		
-		loginPage  = new LoginPage(driver);
-	    readConfig = new ReadConfig();
-	    
-	}
+	
 	
 	@AfterClass
 	public void done() {
@@ -58,16 +44,16 @@ ReadConfig readConfig;
 		driver.quit();
 	}
 	
-	public void LoginPage(String user ,String pass) 
+	public void LoginPage(String user ,String pass,WebDriver driver) 
 	{
 		
-		loginPage.enterUsername(user);
-		loginPage.enterPassword(pass);
-		loginPage.clickButton();
+		new LoginPage(driver).enterUsername(user);
+		new LoginPage(driver).enterPassword(pass);
+		new LoginPage(driver).clickButton();
 	}
 	
 	public void clearDataAndError() {
-		loginPage.clickErrorBtn();
-		loginPage.clearElements();
+		new LoginPage(driver).clickErrorBtn();
+		new LoginPage(driver).clearElements();
 	}
 }

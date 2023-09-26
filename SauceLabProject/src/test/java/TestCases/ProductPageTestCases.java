@@ -20,10 +20,10 @@ public class ProductPageTestCases extends BrowserLaunch {
 	public void selectingDropboxOption() throws IOException, InterruptedException 
 	{
 		LoginPage(new ReadConfig().getUsername(),new ReadConfig().getPassword(),driver);
-		//Loop for number on items options in Dropbox
-		for (int i = 0; i <= 3; i++)   //kkkii
+		//Loop for number on items options in drop box
+		for (int i = 0; i <= 3; i++)   
 		{
-			// click on Dropbox
+			// click on Drop box
 			new ProductPage(driver).selectDropbox(i);
 			
 			//getting expected name of items 
