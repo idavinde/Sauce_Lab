@@ -15,18 +15,11 @@ import Utility.ReadConfig;
 
 public class ProductPageTestCases extends BrowserLaunch {
 
-	@Test(description ="Login into Website Using Valid Username and Password",priority=1)
-	public void loginWithUsernameAndPass() throws IOException {
 
-		new LoginPage(driver).enterUsername(new ReadConfig().getUsername());
-		new LoginPage(driver).enterPassword(new ReadConfig().getPassword());
-		new LoginPage(driver).clickButton();
-
-	}
-
-	@Test(description = "Selecting the Item name AtoZ or ZtoA / Price LtoH or HtoL option from dropbox", enabled = true, priority=2)
+	@Test(description = "Login and Selecting the Item name AtoZ or ZtoA / Price LtoH or HtoL option from dropbox", enabled = true, priority=1)
 	public void selectingDropboxOption() throws IOException, InterruptedException 
 	{
+		LoginPage(new ReadConfig().getUsername(),new ReadConfig().getPassword(),driver);
 		//Loop for number on items options in Dropbox
 		for (int i = 0; i <= 3; i++)   //kkkii
 		{
@@ -55,7 +48,7 @@ public class ProductPageTestCases extends BrowserLaunch {
 
 	}
 	
-	@Test(priority=3)
+	@Test(priority=2)
 	public void addToCartMutipleItems() throws InterruptedException, IOException {
 		
 		new ProductPage(driver).addToCartBtn();
@@ -76,8 +69,13 @@ public class ProductPageTestCases extends BrowserLaunch {
 			Assert.assertTrue(itemPriceCompare.contains((itemPrice.get(j).getText()).substring(1)));
 		}
 		
+		new CartPage(driver).clickCheckout();
+		
+		
 		
 	}
+	
+	
 	
 	
 
