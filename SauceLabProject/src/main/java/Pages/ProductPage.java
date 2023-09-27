@@ -35,7 +35,14 @@ public class ProductPage extends BasePage {
 	@FindBy(className="btn_inventory")
 	private List<WebElement> addToCartBtns;
 	
+	@FindBy(xpath="//div[@class=\"header_secondary_container\"]/span")
+	private WebElement dukhi;
 	
+public String getDukhi() {
+		
+		return getText(dukhi);
+		
+	}
 
 	public String getbackPackPrice() {
 

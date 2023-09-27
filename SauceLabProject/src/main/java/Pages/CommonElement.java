@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class CommonElement {
 	
-	@FindBy(xpath="//span[@class=\"title\"]")
+	@FindBy(xpath="//div[@class=\"header_secondary_container\"]/span")
 	private static WebElement pageTitle;
 	
 	@FindBy(id="react-burger-menu-btn")

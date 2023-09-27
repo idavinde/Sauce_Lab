@@ -42,10 +42,10 @@ public class LoginPage extends BasePage {
 		sendKey(password,str);
 	}
 	
-	public ProductPage clickButton() {
+	public void clickButton() {
 		
 		clickElement(loginBtn);
-		return new ProductPage(driver);
+	
 	}
 	
 	public String getErrorMessage() {
@@ -54,8 +54,9 @@ public class LoginPage extends BasePage {
 	}
 	
 	public void clearElements() {
-		
+		clickElement(username);
 		clearElement(username);
+		clickElement(password);
 		clearElement(password);
 	}
 	

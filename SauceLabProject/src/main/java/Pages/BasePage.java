@@ -48,8 +48,8 @@ public class BasePage extends CommonElement {
 	}
 
 	public void clearElement(WebElement e) {
-		e.sendKeys(Keys.CONTROL + "a");
-		e.sendKeys(Keys.DELETE);
+		waitForElemnetVisibility(e);
+		e.clear();
 	}
 
 	public String getText(WebElement e) {

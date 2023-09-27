@@ -1,9 +1,10 @@
 package TestCases;
 
 import java.io.IOException;
+import java.time.Duration;
 
-
-
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -19,33 +20,40 @@ import Utility.ReadConfig;
 
 public class LoginTestCases extends BrowserLaunch {
 
-	@Test(enabled = true,priority = 1)
+	@Test(enabled= true,priority = 1)
 	public void enterValidUsernameAndPassword() throws IOException, InterruptedException {
-		
-		 LoginPage(new ReadConfig().getUsername(),new ReadConfig().getPassword(), driver);
-		 String text = new BasePage(driver).getPageTitles();
-		Assert.assertEquals(text, "Products");
+
+		LoginPage(new ReadConfig().getUsername(), new ReadConfig().getPassword(), driver);
+		String text;
+		try {
+		text= driver.getCurrentUrl();
+		}
+		catch(StaleElementReferenceException e) {
+			text= driver.getCurrentUrl();
+		}
+		Assert.assertEquals(text, "https://www.saucedemo.com/inventory.html");
 
 	}
 
-	@Test(enabled = false, priority = 2)
-	public void EndToEndFlow() throws IOException, InterruptedException {
-		
+	@Test(enabled= true,priority = 2)
+	public void endToEndFlow() throws IOException, InterruptedException {
+
 		// Choosing item from Product Page
 		new ProductPage(driver).clickJacket();
-		//Verify the page title of Product detail 
+		// Verify the page title of Product detail
 		String des = new ProductDetailPage(driver).getTextDescription();
-		Assert.assertEquals(des,"It's not every day that you come across a midweight quarter-zip fleece jacket capable of handling everything from a relaxing day outdoors to a busy day at the office.");
+		Assert.assertEquals(des,
+				"It's not every day that you come across a midweight quarter-zip fleece jacket capable of handling everything from a relaxing day outdoors to a busy day at the office.");
 		// Add to cart product
 		new ProductDetailPage(driver).clickAddToCart();
 		// open Cart page
 		new ProductDetailPage(driver).clickShoppingBag();
-		//Verify cart Page
+		// Verify cart Page
 		String title = new CartPage(driver).getPageTitles();
 		Assert.assertEquals(title, "Your Cart");
-		
+
 		new CartPage(driver).clickCheckout();
-		//Verify Information Page
+		// Verify Information Page
 		title = new InfoPage(driver).getPageTitles();
 		Assert.assertEquals(title, "Checkout: Your Information");
 		// Enter FirstName, LastName and PostalCode
@@ -53,80 +61,73 @@ public class LoginTestCases extends BrowserLaunch {
 		new InfoPage(driver).enterlastName(new ReadConfig().getLastName());
 		new InfoPage(driver).enterPostalCode(new ReadConfig().getPostalCode());
 		new InfoPage(driver).clickContinueBtn();
-		//Verify OverviewPage
+		// Verify OverviewPage
 		title = new OverviewPage(driver).getPageTitles();
 		Assert.assertEquals(title, "Checkout: Overview");
 		// Click Finish Button
 		new OverviewPage(driver).clickFinish();
-		//Verify Complete Page and thank you message
+		// Verify Complete Page and thank you message
 		title = new CompletePage(driver).getPageTitles();
 		Assert.assertEquals(title, "Checkout: Complete!");
 		title = new CompletePage(driver).getHeaderText();
 		Assert.assertEquals(title, "Thank you for your order!");
 		new CompletePage(driver).clickToHome();
-		
-		//Logout from Product Page
-		clearDataAndError();
-		Thread.sleep(2000);
+
+		// Logout from Product Page
+
+		new LoginPage(driver).clickBurgerBtn();
+		new LoginPage(driver).clickLogoutBtn();
 
 	}
-	
-	@Test(enabled = false, priority = 3)
+
+	@Test(priority=3, dependsOnMethods = {"endToEndFlow"} )
 	public void BlankUserAndBlankPass() throws InterruptedException {
 		
-		Thread.sleep(5000);
 		new LoginPage(driver).clickButton();
+		
 		String error = new LoginPage(driver).getErrorMessage();
 		Assert.assertEquals(error, "Epic sadface: Username is required");
 		new LoginPage(driver).clickErrorBtn();
 
 	}
 
-	@Test(enabled = false , priority = 4)
+	@Test(priority = 4, dependsOnMethods = {"BlankUserAndBlankPass"})
 	public void InvalidUserAndValidPass() throws IOException, InterruptedException {
 
-		
-		LoginPage(new ReadConfig().getWrongUsername(),new ReadConfig().getPassword(),driver);
-		
+		LoginPage(new ReadConfig().getWrongUsername(), new ReadConfig().getPassword(), driver);
+
 		String error = new LoginPage(driver).getErrorMessage();
 		Assert.assertEquals(error, "Epic sadface: Username and password do not match any user in this service");
 		
 		clearDataAndError();
 		
-		Thread.sleep(2000);
 
 	}
 
-	@Test(enabled = false, priority = 5)
+	@Test(priority = 5 , dependsOnMethods= {"InvalidUserAndValidPass"})
 	public void validUserAndInvalidPass() throws IOException, InterruptedException {
-
-		
-		LoginPage(new ReadConfig().getUsername(),new ReadConfig().getWrongPassword(),driver);
+		new LoginPage(driver).clearElements();
+		LoginPage(new ReadConfig().getUsername(), new ReadConfig().getWrongPassword(), driver);
 		String error = new LoginPage(driver).getErrorMessage();
-		
-		
+
 		Assert.assertEquals(error, "Epic sadface: Username and password do not match any user in this service");
-		
+
 		clearDataAndError();
-		
+
 	}
 
-	@Test(enabled = false, priority = 6)
+	@Test( priority = 6,dependsOnMethods= {"validUserAndInvalidPass"})
 	public void InvalidUserAndInvalidPass() throws IOException, InterruptedException {
+
 		
-		
-		Thread.sleep(5000);
-	
-		LoginPage(new ReadConfig().getWrongUsername(),new ReadConfig().getWrongPassword(),driver);
-		
-		
+		new LoginPage(driver).clearElements();
+		LoginPage(new ReadConfig().getWrongUsername(), new ReadConfig().getWrongPassword(), driver);
+
 		String error = new LoginPage(driver).getErrorMessage();
 		Assert.assertEquals(error, "Epic sadface: Username and password do not match any user in this service");
-		
+
 		clearDataAndError();
-		
-		
+
 	}
-	
-	
+
 }

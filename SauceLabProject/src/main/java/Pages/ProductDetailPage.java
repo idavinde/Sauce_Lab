@@ -24,11 +24,14 @@ public ProductDetailPage(WebDriver driver) {
 	
 	
 	
+	
 	public void clickAddToCart() {
 		
 		clickElement(addToCart);
 		
 	}
+	
+
 	
 	public String getTextDescription() {
 		
