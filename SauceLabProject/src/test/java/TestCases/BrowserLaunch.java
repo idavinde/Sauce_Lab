@@ -33,6 +33,7 @@ WebDriver driver;
 	public void setUp() throws IOException {
 		ChromeOptions co = new ChromeOptions();
 		co.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+		//WebDriverManager.chromedriver().setup();
 		System.setProperty("webdriver.chromedriver.driver", "/Users/honey/Desktop/chromedriver");
 		driver = new ChromeDriver(co);
 		driver.get("https://www.saucedemo.com");

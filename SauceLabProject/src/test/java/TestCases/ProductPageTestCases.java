@@ -48,12 +48,11 @@ public class ProductPageTestCases extends BrowserLaunch {
 
 	}
 	
-	@Test(priority=2)
+	@Test(priority=2, dependsOnMethods="selectingDropboxOption")
 	public void addToCartMutipleItems() throws InterruptedException, IOException {
 		
 		new ProductPage(driver).addToCartBtn();
-		
-		Assert.assertEquals(new ProductPage(driver).getCartBadge(), "6");
+		Assert.assertEquals(new ProductPage(driver).getCartBadge(),"6");
 		
 		new ProductPage(driver).clickShoppingBag();
 		
