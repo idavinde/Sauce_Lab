@@ -68,11 +68,17 @@ public class ProductPageTestCases extends BrowserLaunch {
 			Assert.assertTrue(itemPriceCompare.contains((itemPrice.get(j).getText()).substring(1)));
 		}
 		
-		new CartPage(driver).clickCheckout();
+		new CartPage(driver).clickContinue();
+		new CartPage(driver).clickBurgerBtn();
+		new CartPage(driver).clickLogoutBtn();
+		
+		Thread.sleep(10000);
 		
 		
 		
 	}
+	
+	
 	
 	
 	

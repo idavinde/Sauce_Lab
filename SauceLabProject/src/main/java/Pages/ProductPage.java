@@ -38,11 +38,6 @@ public class ProductPage extends BasePage {
 	@FindBy(xpath="//div[@class=\"header_secondary_container\"]/span")
 	private WebElement dukhi;
 	
-public String getDukhi() {
-		
-		return getText(dukhi);
-		
-	}
 
 	public String getbackPackPrice() {
 
@@ -85,7 +80,7 @@ public String getDukhi() {
 		if (x==0)
 			Collections.sort(ItemName);
 
-		else
+		else if(x==1)
 			Collections.sort(ItemName, Collections.reverseOrder());
 
 		return ItemName;
@@ -102,7 +97,7 @@ public String getDukhi() {
 			Collections.sort(itemPrice);
 		}
 
-		else {
+		else if(x==3) {
 			Collections.sort(itemPrice, Collections.reverseOrder());
 		}
 

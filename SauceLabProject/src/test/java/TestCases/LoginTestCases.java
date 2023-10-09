@@ -22,8 +22,9 @@ public class LoginTestCases extends BrowserLaunch {
 
 	@Test(enabled= true,priority = 1)
 	public void enterValidUsernameAndPassword() throws IOException, InterruptedException {
-
+		
 		LoginPage(new ReadConfig().getUsername(), new ReadConfig().getPassword(), driver);
+		
 		String text;
 		try {
 		text= driver.getCurrentUrl();
@@ -31,7 +32,19 @@ public class LoginTestCases extends BrowserLaunch {
 		catch(StaleElementReferenceException e) {
 			text= driver.getCurrentUrl();
 		}
-		Assert.assertEquals(text, "https://www.saucedemo.com/inventory.html");
+		
+		if(driver.getCurrentUrl().equals("https://www.ucedemo.com/inventory.html"))
+		{
+			Assert.assertTrue(true);
+			logger.info("Login test passed");
+		}
+		else
+		{
+			captureScreen(driver,"enterValidUsernameAndPassword");
+			Assert.assertTrue(false);
+			logger.info("Login test failed");
+		}
+		
 
 	}
 

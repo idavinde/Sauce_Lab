@@ -19,10 +19,18 @@ public class CartPage extends BasePage {
 
 	@FindBy(id = "checkout")
 	private static WebElement checkout;
+	
+	@FindBy(id="continue-shopping")
+	private WebElement continueShopping;
 
 	public void clickCheckout() {
 
 		clickElement(checkout);
+	}
+	
+	public void clickContinue() {
+		//scrollDown(continueShopping );
+		clickElement(continueShopping);
 	}
 
 	public List<WebElement> getItemNameOnPage() {

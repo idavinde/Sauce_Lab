@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Comparator;
 
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -64,6 +65,13 @@ public class BasePage extends CommonElement {
 		s.selectByIndex(x);
 
 	}
+	
+	public void scrollDown( WebElement e) {
+		
+		JavascriptExecutor js= (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView();", e);
+	}
+	
 
 	public void selectByvisibleText() {
 	}
