@@ -1,6 +1,8 @@
 package TestCases;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.WebElement;
@@ -21,6 +23,7 @@ public class ProductPageTestCases extends BrowserLaunch {
 	{
 		LoginPage(new ReadConfig().getUsername(),new ReadConfig().getPassword(),driver);
 		//Loop for number on items options in drop box
+		logger.info("Click on dropbox and check all options");
 		for (int i = 0; i <= 3; i++)   
 		{
 			// click on Drop box
@@ -48,7 +51,7 @@ public class ProductPageTestCases extends BrowserLaunch {
 
 	}
 	
-	@Test(priority=2, dependsOnMethods="selectingDropboxOption")
+	@Test(enabled = true, priority=3, dependsOnMethods="selectingDropboxOption")
 	public void addToCartMutipleItems() throws InterruptedException, IOException {
 		
 		new ProductPage(driver).addToCartBtn();
@@ -75,6 +78,29 @@ public class ProductPageTestCases extends BrowserLaunch {
 		Thread.sleep(10000);
 		
 		
+		
+	}
+	
+	@Test (priority = 2 , dependsOnMethods= "selectingDropboxOption")
+	public void checkTextandLink() throws InterruptedException {
+		
+		new ProductPage(driver).clickfb(); 
+		logger.info("Click on Facebook link");
+		new ProductPage(driver).shiftToNewTab("https://www.facebook.com/saucelabs");
+	
+		new ProductPage(driver).clicklinkedin();
+		logger.info("Click on Linkedin link");
+		new ProductPage(driver).shiftToNewTab("https://www.linkedin.com/company/sauce-labs/");
+		
+		new ProductPage(driver).clicktwitter();
+		logger.info("Click on Twitter link");
+		new ProductPage(driver).shiftToNewTab("https://twitter.com/saucelabs");
+		
+		logger.info("Check footer text");
+		Assert.assertEquals(new ProductPage(driver).getFooterLinkText(), "© 2024 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy");
+		
+		logger.info("Check Main Logo text");
+		Assert.assertEquals(new ProductPage(driver).getMainLogoText(), "Swag Labs");
 		
 	}
 	

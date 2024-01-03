@@ -12,11 +12,16 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+
 
 public class BasePage extends CommonElement {
 
@@ -130,6 +135,43 @@ public class BasePage extends CommonElement {
 	public void clickLogoutBtn() {
 		clickElement(commonLogoutBtn());
 	}
+	
+	public void clickfb() {
+		scrollDown(facebookBtn());
+		clickElement(facebookBtn());
+	}
+
+	public void clicklinkedin() {
+
+		clickElement(linkedinBtn());
+	}
+
+	public void clicktwitter() {
+
+		clickElement(twitterBtn());
+	}
+	
+	public void shiftToNewTab(String link) {
+		
+		ArrayList<String> arr = new ArrayList<String>(driver.getWindowHandles());
+		driver.switchTo().window(arr.get(1));
+		Assert.assertEquals(driver.getCurrentUrl(),link);
+		driver.close();
+		driver.switchTo().window(arr.get(0));
+		
+	}
+	
+	public String getFooterLinkText() {
+		
+		return getText(footerLink());
+	}
+	
+	public String getMainLogoText() {
+		scrollDown(mainLogo());
+		return getText(mainLogo());
+	}
+	
+	
 	
 	
 }

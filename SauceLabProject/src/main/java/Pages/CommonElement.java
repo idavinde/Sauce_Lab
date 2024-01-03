@@ -31,6 +31,21 @@ public class CommonElement {
 	@FindBy(name="remove-sauce-labs-backpack")
 	private static WebElement removeBtn;
 	
+	@FindBy(className="social_facebook")
+	private static WebElement facebook;
+	
+	@FindBy(className="social_linkedin")
+	private static WebElement linkedin;
+	
+	@FindBy(className="social_twitter")
+	private static WebElement twitter;
+	
+	@FindBy(css="div.footer_copy")
+	private static WebElement footerLink;
+	
+	@FindBy(css="div.app_logo")
+	private static WebElement mainLogo;
+	
 	
 	
 	protected static WebElement getPageTitle() {
@@ -72,6 +87,30 @@ public class CommonElement {
 
 		return removeBtn;
 	}
+	
+	protected static WebElement facebookBtn() {
+
+		return facebook;
+	}
+	protected static WebElement linkedinBtn() {
+
+		return linkedin;
+	}
+	protected static WebElement twitterBtn() {
+
+		return twitter;
+	}
+	
+	protected static WebElement footerLink() {
+		
+		return footerLink;
+	}
+	
+	protected static WebElement mainLogo() {
+		
+		return  mainLogo;
+	}
+	
 	
 	
 }

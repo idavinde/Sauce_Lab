@@ -48,6 +48,7 @@ public static Logger logger;
 	public void done() {
 		
 		driver.quit();
+		//driver.getTitle();
 	}
 	
 	

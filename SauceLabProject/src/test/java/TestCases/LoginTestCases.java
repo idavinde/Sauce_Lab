@@ -6,6 +6,7 @@ import java.time.Duration;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import Pages.BasePage;
@@ -19,7 +20,7 @@ import Pages.ProductPage;
 import Utility.ReadConfig;
 
 public class LoginTestCases extends BrowserLaunch {
-
+	
 	@Test(enabled= true,priority = 1)
 	public void enterValidUsernameAndPassword() throws IOException, InterruptedException {
 		
