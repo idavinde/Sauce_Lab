@@ -46,6 +46,12 @@ public class CommonElement {
 	@FindBy(css="div.app_logo")
 	private static WebElement mainLogo;
 	
+	@FindBy(id="about_sidebar_link")
+	private static WebElement aboutLink;
+	
+	@FindBy(id="react-burger-cross-btn")
+	private static WebElement crossButton;
+	
 	
 	
 	protected static WebElement getPageTitle() {
@@ -111,6 +117,15 @@ public class CommonElement {
 		return  mainLogo;
 	}
 	
+	protected static WebElement getAboutLink() {
+		
+		return aboutLink;
+	}
+	
+	protected static WebElement getCrossBtn() {
+		
+		return crossButton;
+	}
 	
 	
 }

@@ -171,6 +171,42 @@ public class BasePage extends CommonElement {
 		return getText(mainLogo());
 	}
 	
+	public void selectTextAndLinks() {
+		
+		new BasePage(driver).clickfb(); 
+		//logger.info("Click on Facebook link");
+		new BasePage(driver).shiftToNewTab("https://www.facebook.com/saucelabs");
+	
+		new BasePage(driver).clicklinkedin();
+		//logger.info("Click on Linkedin link");
+		new BasePage(driver).shiftToNewTab("https://www.linkedin.com/company/sauce-labs/");
+		
+		new BasePage(driver).clicktwitter();
+		//logger.info("Click on Twitter link");
+		new BasePage(driver).shiftToNewTab("https://twitter.com/saucelabs");
+		
+		//logger.info("Check footer text");
+		Assert.assertEquals(new BasePage(driver).getFooterLinkText(), "© 2024 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy");
+		
+		//logger.info("Check Main Logo text");
+		Assert.assertEquals(new BasePage(driver).getMainLogoText(), "Swag Labs");
+	}
+	
+	public void BurgerBtn() {
+		
+		new BasePage(driver).clickBurgerBtn();
+		
+		Assert.assertTrue(getCrossBtn().isEnabled());
+		new BasePage(driver).clickElement(getAboutLink());
+		Assert.assertEquals(driver.getCurrentUrl(),"https://saucelabs.com/");
+		driver.navigate().back();
+		
+		new BasePage(driver).clickBurgerBtn();
+		
+		
+		new BasePage(driver).clickLogoutBtn();
+	}
+	
 	
 	
 	

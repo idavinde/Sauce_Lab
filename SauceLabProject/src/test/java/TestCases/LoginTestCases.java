@@ -22,7 +22,7 @@ import Utility.ReadConfig;
 public class LoginTestCases extends BrowserLaunch {
 	
 	@Test(enabled= true,priority = 1)
-	public void enterValidUsernameAndPassword() throws IOException, InterruptedException {
+	public void enterValidUsernameAndPassword(WebDriver driver) throws IOException, InterruptedException {
 		
 		LoginPage(new ReadConfig().getUsername(), new ReadConfig().getPassword(), driver);
 		
@@ -34,7 +34,7 @@ public class LoginTestCases extends BrowserLaunch {
 			text= driver.getCurrentUrl();
 		}
 		
-		if(driver.getCurrentUrl().equals("https://www.ucedemo.com/inventory.html"))
+		if(driver.getCurrentUrl().equals("https://www.saucedemo.com/inventory.html"))
 		{
 			Assert.assertTrue(true);
 			logger.info("Login test passed");
