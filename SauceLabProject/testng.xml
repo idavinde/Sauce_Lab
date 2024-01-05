@@ -10,7 +10,7 @@
 	<test name="Test">
 	
 		<classes>
-			<class name="TestCases.ProductPageTestCases">
+			<class name="TestCases.CartPageTestCases">
 			
 				<methods>
 				
