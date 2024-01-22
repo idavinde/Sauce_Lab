@@ -52,7 +52,7 @@ public class ProductPageTestCases extends BrowserLaunch {
 			
 		}
 		
-		//new ProductPage(driver).addToCartBtn();
+		
 
 	}
 	
