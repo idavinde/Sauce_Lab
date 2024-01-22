@@ -52,6 +52,12 @@ public class CommonElement {
 	@FindBy(id="react-burger-cross-btn")
 	private static WebElement crossButton;
 	
+	@FindBy(id="inventory_sidebar_link")
+	private static WebElement allItemBtn;
+	
+	@FindBy(id="reset_sidebar_link")
+	private static WebElement resetBtn;
+	
 	
 	
 	protected static WebElement getPageTitle() {
@@ -126,6 +132,16 @@ public class CommonElement {
 		
 		return crossButton;
 	}
+	
+protected static WebElement getAllItemBtn() {
+		
+		return allItemBtn;
+	}
+	
+protected static WebElement getResetBtn() {
+	
+	return resetBtn;
+}
 	
 	
 }

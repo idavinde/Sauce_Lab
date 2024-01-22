@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.Comparator;
 
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
@@ -69,6 +72,20 @@ public class BasePage extends CommonElement {
 		Select s = new Select(e);
 		s.selectByIndex(x);
 
+	}
+	
+	public boolean isElementPresent(WebElement f) {
+	    try {
+	        // Set a short implicit wait
+	        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
+	        return f.isDisplayed();
+	    } catch (NoSuchElementException e) {
+	        return false;
+	    } finally {
+	        // Reset the implicit wait
+	        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+	    }
 	}
 	
 	public void scrollDown( WebElement e) {
@@ -192,19 +209,50 @@ public class BasePage extends CommonElement {
 		Assert.assertEquals(new BasePage(driver).getMainLogoText(), "Swag Labs");
 	}
 	
-	public void BurgerBtn() {
-		
+	
+	public void commonAbout() {
 		new BasePage(driver).clickBurgerBtn();
 		
 		Assert.assertTrue(getCrossBtn().isEnabled());
 		new BasePage(driver).clickElement(getAboutLink());
 		Assert.assertEquals(driver.getCurrentUrl(),"https://saucelabs.com/");
 		driver.navigate().back();
+	}
+	
+	public void commonLogout() {
 		
 		new BasePage(driver).clickBurgerBtn();
-		
-		
 		new BasePage(driver).clickLogoutBtn();
+		
+	}
+	
+	public void commonAllItems(){
+		new BasePage(driver).clickBurgerBtn();
+		new BasePage(driver).clickElement(getAllItemBtn());
+		new BasePage(driver).clickElement(getCrossBtn());
+		Assert.assertEquals(driver.getCurrentUrl(),"https://www.saucedemo.com/inventory.html");
+		
+	}
+	
+	public void commonReset() {
+		String a;
+		if(isElementPresent(commonShoppingBadge()))
+		{
+			//a = commonShoppingBadge().getText();
+			new BasePage(driver).clickBurgerBtn();
+			new BasePage(driver).clickElement(getResetBtn());
+			new BasePage(driver).clickElement(getCrossBtn());
+			
+			Assert.assertFalse(isElementPresent(commonShoppingBadge()));
+		}
+		
+	}
+	
+	public void burgerBtn() {
+		commonAbout();
+		commonAllItems();
+		commonReset();
+		commonLogout();
 	}
 	
 	
