@@ -70,10 +70,10 @@ public static Logger logger;
 		
 	}
 	
-	public void commonlogout() {
-		new LoginPage(driver).clickBurgerBtn();
-		new LoginPage(driver).clickLogoutBtn();
-	}
+//	public void commonlogout() {
+//		new LoginPage(driver).clickBurgerBtn();
+//		new LoginPage(driver).clickLogoutBtn();
+//	}
 	
 	public void captureScreen(WebDriver driver, String tname) throws IOException {
 		TakesScreenshot ts = (TakesScreenshot) driver;

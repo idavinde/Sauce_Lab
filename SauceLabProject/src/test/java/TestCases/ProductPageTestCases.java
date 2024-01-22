@@ -49,15 +49,25 @@ public class ProductPageTestCases extends BrowserLaunch {
 
 			}
 			
-			Thread.sleep(4000);
+			
 		}
+		
+		//new ProductPage(driver).addToCartBtn();
 
 	}
 	
 	@Test(enabled = true, priority=2, dependsOnMethods="selectingDropboxOption")
-	public void addToCartMutipleItems() throws InterruptedException, IOException {
+	public void checkBurgerBtnOptions() throws InterruptedException, IOException {
 		
+		logger.info("Click on All Items");
+		new ProductPage(driver).commonAllItems();
 		
+		logger.info("Click on Reset");
+		new ProductPage(driver).commonReset();
+		logger.info("Click on About");
+		new ProductPage(driver).commonAbout();
+		logger.info("Click on logout");
+		new ProductPage(driver).commonLogout();
 		
 		
 	}
