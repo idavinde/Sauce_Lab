@@ -5,7 +5,7 @@
     <classes>
       <class name="TestCases.ProductPageTestCases">
         <methods>
-          <include name="checkSocialMediaLink"/>
+          <include name="checkBurgerBtnOptions"/>
           <include name="setUp"/>
           <include name="done"/>
           <include name="selectingDropboxOption"/>
