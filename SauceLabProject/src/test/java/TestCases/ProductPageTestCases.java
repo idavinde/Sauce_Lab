@@ -67,6 +67,8 @@ public class ProductPageTestCases extends BrowserLaunch {
 		logger.info("Click on About");
 		new ProductPage(driver).commonAbout();
 		logger.info("Click on logout");
+		
+		//jjjjjjjjjjjjj
 		new ProductPage(driver).commonLogout();
 		
 		
