@@ -61,20 +61,7 @@ public void clickOnErrorMsg() {
 	}
 
 	
-public void clearElements() {
-		//clickElement(firstName);
-		clearElement(firstName);
-		//clickElement(lastName);
-		clearElement(lastName);
-		//clickElement(postalCode);
-		clearElement(postalCode);
-}
-public void clearLN() {
-	deleteText(lastName);
-}
 
-public void clearPC() {
-	deleteText(postalCode);
-}
+
 	
 }

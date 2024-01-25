@@ -262,15 +262,7 @@ public class BasePage extends CommonElement {
 	}
 	
 	
-	public void deleteText(WebElement e) {
-		
-		String s =getAttribute(e);
-		
-		for(int i=0;i<s.length();i++) {
-			e.sendKeys(Keys.BACK_SPACE);
-	        e.sendKeys(Keys.DELETE);
-		}
-	}
+	
 	
 	
 	
