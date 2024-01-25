@@ -60,7 +60,7 @@ public class ProductPageTestCases extends BrowserLaunch {
 	public void checkBurgerBtnOptions() throws InterruptedException, IOException {
 		
 		logger.info("Click on All Items");
-		new ProductPage(driver).commonAllItems();
+		new ProductPage(driver).commonAllItems(driver);
 		
 		logger.info("Click on Reset");
 		new ProductPage(driver).commonReset();
@@ -68,7 +68,7 @@ public class ProductPageTestCases extends BrowserLaunch {
 		new ProductPage(driver).commonAbout();
 		logger.info("Click on logout");
 		
-		new ProductPage(driver).commonLogout();
+		new ProductPage(driver).commonLogout(driver);
 		
 		
 	}

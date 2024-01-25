@@ -24,8 +24,17 @@ public  InfoPage(WebDriver driver) {
 	@FindBy(id="continue")
 	private WebElement continueBtn;
 	
+	@FindBy(xpath="//h3[@data-test=\"error\"]")
+	private WebElement errorMsg;
+	
+	@FindBy(className="error-button")
+	private WebElement errorBtn;
+	
+	
 	public void enterfirstName(String str) {
+		
 		sendKey(firstName,str);
+		
 	}
 	
 	public void enterlastName(String str) {
@@ -41,5 +50,31 @@ public  InfoPage(WebDriver driver) {
 		clickElement(continueBtn);
 	}
 	
+	public String getErrorMsg() {
+		
+		return getText(errorMsg);
+	}
+	
+public void clickOnErrorMsg() {
+		
+		 clickElement(errorBtn);
+	}
+
+	
+public void clearElements() {
+		//clickElement(firstName);
+		clearElement(firstName);
+		//clickElement(lastName);
+		clearElement(lastName);
+		//clickElement(postalCode);
+		clearElement(postalCode);
+}
+public void clearLN() {
+	deleteText(lastName);
+}
+
+public void clearPC() {
+	deleteText(postalCode);
+}
 	
 }

@@ -1,6 +1,7 @@
 package TestCases;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.WebElement;
@@ -17,7 +18,7 @@ public class CartPageTestCases extends BrowserLaunch {
 	@Test
 	public void verifyAddedItems() throws InterruptedException, IOException {
 		
-		new LoginTestCases().enterValidUsernameAndPassword(driver);
+		LoginPage(new ReadConfig().getUsername(),new ReadConfig().getPassword(),driver);
 		
 		
 		
@@ -49,5 +50,26 @@ public class CartPageTestCases extends BrowserLaunch {
 		
 		
 	}
+	
+	@Test(priority=2,dependsOnMethods="verifyAddedItems")
+	public void burgerBtn() {
+		
+		logger.info("Click on All Items");
+		new ProductPage(driver).commonAllItems(driver);
+		
+		new ProductPage(driver).clickShoppingBag();
+		
+		logger.info("Click on Reset");
+		new ProductPage(driver).commonReset();
+		logger.info("Click on About");
+		new ProductPage(driver).commonAbout();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
+		logger.info("Click on logout");
+		
+		new ProductPage(driver).commonLogout(driver);
+		
+	}
+
+	
 
 }

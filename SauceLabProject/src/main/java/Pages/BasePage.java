@@ -66,6 +66,12 @@ public class BasePage extends CommonElement {
 		return e.getText();
 
 	}
+	
+	public String getAttribute(WebElement e) {
+		waitForElemnetVisibility(e);
+		return e.getAttribute("value");
+
+	}
 
 	public void selectByIndex(WebElement e, int x) {
 		waitForElemnetVisibility(e);
@@ -219,14 +225,14 @@ public class BasePage extends CommonElement {
 		driver.navigate().back();
 	}
 	
-	public void commonLogout() {
+	public void commonLogout(WebDriver driver) {
 		
 		new BasePage(driver).clickBurgerBtn();
 		new BasePage(driver).clickLogoutBtn();
 		
 	}
 	
-	public void commonAllItems(){
+	public void commonAllItems(WebDriver driver){
 		new BasePage(driver).clickBurgerBtn();
 		new BasePage(driver).clickElement(getAllItemBtn());
 		new BasePage(driver).clickElement(getCrossBtn());
@@ -250,9 +256,20 @@ public class BasePage extends CommonElement {
 	
 	public void burgerBtn() {
 		commonAbout();
-		commonAllItems();
+		//commonAllItems();
 		commonReset();
-		commonLogout();
+		//commonLogout();
+	}
+	
+	
+	public void deleteText(WebElement e) {
+		
+		String s =getAttribute(e);
+		
+		for(int i=0;i<s.length();i++) {
+			e.sendKeys(Keys.BACK_SPACE);
+	        e.sendKeys(Keys.DELETE);
+		}
 	}
 	
 	

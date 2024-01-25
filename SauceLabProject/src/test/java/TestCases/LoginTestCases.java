@@ -21,8 +21,8 @@ import Utility.ReadConfig;
 
 public class LoginTestCases extends BrowserLaunch {
 	
-	@Test(enabled= true,priority = 1)
-	public void enterValidUsernameAndPassword(WebDriver driver) throws IOException, InterruptedException {
+	@Test(enabled= true)
+	public void enterValidUsernameAndPassword() throws IOException, InterruptedException {
 		
 		LoginPage(new ReadConfig().getUsername(), new ReadConfig().getPassword(), driver);
 		
